@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_0" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Property">
+		<xs:annotation>
+			<xs:documentation>Eine Property ist ein Wert, der fuer spezifische Loesungen mit uebermittelt werden kann ohne das Nachrichtenschema dafuer aendern zu muessen.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="key" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Name des Propertys</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="value" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Wert des Propertys</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PropertyGroup">
+		<xs:annotation>
+			<xs:documentation>Eine PropertyGroup ordnet Properties einem Identfikator zu.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Property" type="Property" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Eine Liste von Name-Wert-Paaren</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifikator der PropertyGroup</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+        <xs:element name="Property" type="Property"/>
+	<xs:element name="PropertyGroup" type="PropertyGroup"/>
+</xs:schema>

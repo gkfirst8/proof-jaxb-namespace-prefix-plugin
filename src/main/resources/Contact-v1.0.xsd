@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Matthias Baerens (The Bakery GmbH) -->
+<xs:schema xmlns="http://types.theberlinbakery.com/v1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Contact">
+		<xs:annotation>
+			<xs:documentation>Contact gibt an, auf welche Art Kontakt zu einer Person (oder einer Instiution) aufgenommen werden kann</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="email" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Email-Adresse</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="telephone" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Telefonnummer</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mobile" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Mobiltelefonnummer</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fax" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Faxnummer</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Contact">
+		<xs:annotation>
+			<xs:documentation>Contact gibt an, auf welche Art Kontakt zu einer Person (oder einer Instiution) aufgenommen werden kann</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

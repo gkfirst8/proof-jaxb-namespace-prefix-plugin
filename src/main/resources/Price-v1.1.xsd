@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2011 rel. 2 (x64) (http://www.altova.com) by Matze (TheBakery GmbH)--><xs:schema targetNamespace="http://types.theberlinbakery.com/v1_2" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_2" xmlns:ns1="http://types.theberlinbakery.com/v1_0">
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Tax-v1.0.xsd"/>
+  <xs:include schemaLocation="Promotion-v1.1.xsd"/>
+  <xs:complexType name="Price" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Price</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Net" type="NetPrice" minOccurs="0"/>
+      <xs:element name="Gross" type="GrossPrice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GrossPrice">
+    <xs:annotation>
+      <xs:documentation>Gross price</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="amount" type="xs:decimal" use="required">
+      <xs:annotation>
+        <xs:documentation>Gross price including VAT (value added tax)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="amountDiscounted" type="xs:decimal" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="NetPrice">
+    <xs:annotation>
+      <xs:documentation>Net price</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="amount" type="xs:decimal" use="required">
+      <xs:annotation>
+        <xs:documentation>Net price without tax</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="amountDiscounted" type="xs:decimal" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="SumPrice">
+    <xs:annotation>
+      <xs:documentation>Prices with mixed types of VAT (total)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Price">
+        <xs:sequence>
+          <xs:element name="Tax" type="ns1:Tax" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Sum of VAT (value added tax) by type of VAT</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Promotion" type="Promotion" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Promotions that affected this price</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PosPrice">
+    <xs:annotation>
+      <xs:documentation>Prices having no mixed VAT based on articles</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Price">
+        <xs:sequence>
+          <xs:element name="Tax" type="ns1:Tax" minOccurs="1">
+            <xs:annotation>
+              <xs:documentation>VAT covered by gross price</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Promotion" type="Promotion" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Promotions that affected this price</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UnitPrice">
+    <xs:annotation>
+      <xs:documentation>Single prices on articles</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Net" type="UnitNetPrice" minOccurs="0"/>
+      <xs:element name="Gross" type="UnitGrossPrice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UnitNetPrice">
+    <xs:annotation>
+      <xs:documentation>Single net price</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GrossPrice">
+        <xs:attribute name="list" type="xs:decimal" use="optional">
+          <xs:annotation>
+            <xs:documentation>gross single list price</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UnitGrossPrice">
+    <xs:annotation>
+      <xs:documentation>Single gross price</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NetPrice">
+        <xs:attribute name="list" type="xs:decimal" use="optional">
+          <xs:annotation>
+            <xs:documentation>net single list price</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PurchaseItemPrice">
+    <xs:annotation>
+      <xs:documentation>Purchase prices having no mixed VAT based on articles</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Price">
+        <xs:sequence>
+          <xs:element name="Tax" type="ns1:Tax" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>VAT covered by gross price</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TotalPrice">
+    <xs:annotation>
+      <xs:documentation>Total price</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Net">
+        <xs:complexType>
+          <xs:attribute name="amount" type="xs:decimal" use="required">
+            <xs:annotation>
+              <xs:documentation>net price without VAT</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Gross">
+        <xs:complexType>
+          <xs:attribute name="amount" type="xs:decimal" use="required">
+            <xs:annotation>
+              <xs:documentation>Gross price including VAT (value added tax)</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Tax" type="ns1:Tax" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>VAT covered by gross price</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SumPrice" type="SumPrice"/>
+  <xs:element name="PosPrice" type="PosPrice"/>
+</xs:schema>

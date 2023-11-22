@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Matthias Baerens (The Bakery GmbH) -->
+<xs:schema xmlns="http://types.theberlinbakery.com/v1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Article">
+		<xs:annotation>
+			<xs:documentation>Nachrichtenuebergreifende Informationen im Order Transaction Prozess</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Kurzbezeichnung des Artikels, wie im Lieferschein aufgefuehrt</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="articleId" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifikator des Artikels</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ean" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>International Article Number</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isbn" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Internationale Standardbuchnummer</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SupplierArticle">
+		<xs:annotation>
+			<xs:documentation>Referenzen des Artikels (inkl. Supplierspezfische Referenzen)</xs:documentation>
+		</xs:annotation>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Kurzbezeichnung des Artikels, wie im Lieferschein aufgefuehrt</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="articleId" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Identifikator des Artikels</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ean" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>International Article Number</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isbn" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Internationale Standardbuchnummer</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="supplierArticleId" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Identifikator des Artikels beim Distributor</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+	</xs:complexType>
+	<xs:element name="Article" type="Article"/>
+	<xs:element name="SupplierArticle" type="SupplierArticle"/>
+</xs:schema>

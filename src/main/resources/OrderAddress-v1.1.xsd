@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://types.theberlinbakery.com/v1_2" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://types.theberlinbakery.com/v1_2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://types.theberlinbakery.com/v1_0">
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Person-v1.0.xsd"/>
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Contact-v1.0.xsd"/>
+  <xs:complexType name="Location">
+    <xs:annotation>
+      <xs:documentation>A physical address location</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="City" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>City</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PostCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>PostCode / ZipCode</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="District" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>District or State</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>An address can be Street, Postbox or Packstation</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+          <xs:element name="Street" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Street name including house number</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DetailedStreet">
+            <xs:annotation>
+              <xs:documentation>Street name and house number separately</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:attribute name="streetName" type="xs:string" use="required">
+                <xs:annotation>
+                  <xs:documentation>Street name</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+              <xs:attribute name="houseNumber" type="xs:string" use="required">
+                <xs:annotation>
+                  <xs:documentation>House number</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+        <xs:element name="POBox" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Post Office Box</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Packstation">
+          <xs:annotation>
+            <xs:documentation>Packstation</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="userId" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Account / user id of the receiver at the Packstation</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="stationId" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Id of Packstation</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="Addition" type="xs:string" minOccurs="0" maxOccurs="2">
+        <xs:annotation>
+          <xs:documentation>Address addition, like "c/o Mustermann", "3. OG, Mi re" or " "Aufgang 4"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Country" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Country</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:annotation>
+      <xs:documentation>Address</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:annotation>
+        <xs:documentation>A package can be physical or non-physical / digital e.g. a download. If the package is physical set delivery address. Cash on delivery is only possible with physical package</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="Receiver" type="ns1:LegalPerson"/>
+        <xs:element name="Contact" type="ns1:Contact" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contact</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Location" type="Location">
+          <xs:annotation>
+            <xs:documentation>physical location</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="Immaterial" type="Immaterial"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>ID of the address. This will be referenced in Position@ShipToAddressID and Order/InvoiceAddressID</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="type" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Address type, can be "BILLING", "SHIPPING" or "IMMATERIAL". An INVOICE-Address can also be used as SHIPPING address.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Immaterial">
+    <xs:annotation>
+      <xs:documentation>The package is non-physical (digital). No delivery address required. Cash on delivery not possible</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="Email" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Email address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Telephone" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Phone number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Other">
+        <xs:annotation>
+          <xs:documentation>The order will be delivered in a different way</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="type" type="xs:string" use="required">
+                <xs:annotation>
+                  <xs:documentation>Type of immaterial address</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+</xs:schema>

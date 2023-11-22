@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (x64) (http://www.altova.com) by Matthias Frohwann (TheBakery GmbH) -->
+<xs:schema xmlns="http://types.theberlinbakery.com/v1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Element">
+		<xs:annotation>
+			<xs:documentation>Element, welches durch einen Namen identifiziert wird und Attribute als Schluessel-Wert-Paare sowie weitere Elemente enthaelt</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Attribute" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Schluessel-Wert-Paare </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="key" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Schluessel</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="value" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Wert</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Element" type="Element" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Name des Elements</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Element" type="Element">
+		<xs:annotation>
+			<xs:documentation>Element, welches durch einen Namen identifiziert wird und Attribute als Schluessel-Wert-Paare sowie weitere Elemente enthaelt</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

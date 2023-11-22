@@ -1,0 +1,95 @@
+<storeOrder xmlns="http://types.theberlinbakery.com/v1_2" xmlns:v1p0="http://types.theberlinbakery.com/v1_0">
+    <v1p0:MessageId>207772-843507-0</v1p0:MessageId>
+    <v1p0:User></v1p0:User>
+    <v1p0:Password></v1p0:Password>
+    <v1p0:Shop>My Shop.example.com</v1p0:Shop>
+    <Order>
+        <Customer orderId="ACC1-00081174">
+            <Company name="Company Name A Here"/>
+            <ContactPerson salutation="Ms" firstName="Jane" lastName="Doey"/>
+            <Contact email="jane@example.com" telephone="0123456789"/>
+        </Customer>
+        <Shop orderCreationDate="2018-08-24T14:56:41.668" customerId="ACC1-00208381" orderId="ACC1-00081174"/>
+        <Address id="1" type="SHIPPING">
+            <Receiver>
+                <v1p0:CompanyName>Company Name B Here</v1p0:CompanyName>
+                <v1p0:ContactPerson salutation="Dhr." firstName="John" lastName="Doe"/>
+            </Receiver>
+            <Contact email="user@example.com" telephone="0612345678"/>
+            <Location>
+                <City>GRONINGEN</City>
+                <PostCode>1234AA</PostCode>
+                <Street>Some Nice Road 38-9b</Street>
+                <Country>NLD</Country>
+            </Location>
+        </Address>
+        <Address id="2" type="INVOICE">
+            <Receiver>
+                <v1p0:CompanyName>Company Name B Here</v1p0:CompanyName>
+                <v1p0:ContactPerson salutation="Dhr." firstName="John" lastName="Doe"/>
+            </Receiver>
+            <Contact email="user@example.com" telephone="0612345678"/>
+            <Location>
+                <City>GRONINGEN</City>
+                <PostCode>1234AA</PostCode>
+                <Street>Some Nice Road 38-9b</Street>
+                <Country>NLD</Country>
+            </Location>
+        </Address>
+        <Sales method="IDEAL" currency="EUR">
+            <Sum>
+                <Net amount="471.38"/>
+                <Gross amount="570.37"/>
+                <Tax type="FullTax" amount="98.99"/>
+            </Sum>
+            <Charge type="DELIVERYCHARGE">
+                <Net amount="0"/>
+                <Gross amount="0"/>
+                <Tax type="NoTax" amount="0"/>
+            </Charge>
+            <Charge type="PAYMENTCHARGE">
+                <Net amount="0"/>
+                <Gross amount="0"/>
+                <Tax type="NoTax" amount="0"/>
+            </Charge>
+            <Total>
+                <Net amount="471.38"/>
+                <Gross amount="570.37"/>
+                <Tax type="FullTax" amount="98.99"/>
+            </Total>
+        </Sales>
+        <SplitShipmentAllowed>true</SplitShipmentAllowed>
+        <Position number="1">
+            <Article name="Werkjas groen/marineblauw maat 48 / S" articleId="C104008248" ean="87161061349391"/>
+            <Ordered quantity="1" deliveryDays="0"/>
+            <Standard></Standard>
+            <DeliveryOption name="nightshipping"/>
+            <SalesSum>
+                <Net amount="148.5" amountDiscounted="148.5"/>
+                <Gross amount="179.69" amountDiscounted="179.69"/>
+                <Tax type="NORMAL_TAX" amount="31.19"/>
+            </SalesSum>
+            <PurchaseItem>
+                <Net amount="123.75"/>
+            </PurchaseItem>
+            <Unit>
+                <Net amount="148.5" amountDiscounted="148.5"/>
+                <Gross list="165" amount="179.69" amountDiscounted="179.69"/>
+            </Unit>
+            <Properties id="references">
+                <v1p0:Property key="shopArticleNo" value="C104008248"/>
+                <v1p0:Property key="positionNumber" value="1"/>
+            </Properties>
+            <Properties id="product">
+                <v1p0:Property key="OriginalUnitName" value="PCE"/>
+                <v1p0:Property key="productClass4" value="5571"/>
+            </Properties>
+        </Position>
+        <Properties id="Customer">
+            <v1p0:Property key="customerGroup" value="IG_SMBCustomers,IG_RegisteredUsers,Everyone"/>
+        </Properties>
+        <Properties id="AttributeValues">
+            <v1p0:Property key="ishShippingMethodID" value="shipping-NT"/>
+        </Properties>
+    </Order>
+</storeOrder>

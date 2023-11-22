@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="OrderService" targetNamespace="http://v1_2.services.theberlinbakery.com/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:nsservice="http://v1_2.services.theberlinbakery.com/" xmlns:typesv10="http://types.theberlinbakery.com/v1_0" xmlns:typesv11="http://types.theberlinbakery.com/v1_1" xmlns:typesv12="http://types.theberlinbakery.com/v1_2">
+  <types>
+    <xsd:schema targetNamespace="http://v1_2.services.theberlinbakery.com" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://types.theberlinbakery.com/v1_2" schemaLocation="OrderService-v1.1.xsd"/>
+      <xsd:import namespace="http://types.theberlinbakery.com/v1_1" schemaLocation="Acknowledgement-v1.1.xsd"/>
+      <xsd:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Faults-v1.0.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="OrderService_storeOrder">
+    <part name="storeOrder" element="typesv12:storeOrder"/>
+  </message>
+  <message name="OrderService_storeOrderResponse">
+    <part name="Acknowledgement" element="typesv11:Acknowledgement"/>
+  </message>
+  <message name="DuplicateException">
+    <part name="DuplicateException" element="typesv10:DuplicateException"/>
+  </message>
+  <message name="InvalidMessageException">
+    <part name="InvalidMessageException" element="typesv10:InvalidMessageException"/>
+  </message>
+  <message name="TechnicalException">
+    <part name="TechnicalException" element="typesv10:TechnicalException"/>
+  </message>
+  <portType name="OrderServicePort">
+    <operation name="storeOrder" parameterOrder="storeOrder">
+      <input message="nsservice:OrderService_storeOrder"/>
+      <output message="nsservice:OrderService_storeOrderResponse"/>
+      <fault name="DuplicateException" message="nsservice:DuplicateException"/>
+      <fault name="TechnicalException" message="nsservice:TechnicalException"/>
+      <fault name="InvalidMessageException" message="nsservice:InvalidMessageException"/>
+    </operation>
+  </portType>
+  <binding name="OrderServiceBinding" type="nsservice:OrderServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="storeOrder">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="DuplicateException">
+        <soap:fault name="DuplicateException" use="literal"/>
+      </fault>
+      <fault name="TechnicalException">
+        <soap:fault name="TechnicalException" use="literal"/>
+      </fault>
+      <fault name="InvalidMessageException">
+        <soap:fault name="InvalidMessageException" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="OrderService">
+    <port name="OrderServicePort" binding="nsservice:OrderServiceBinding">
+      <soap:address location="http://services.theberlinbakery.com/webservices/OrderService/v1.2?wsdl"/>
+    </port>
+  </service>
+</definitions>

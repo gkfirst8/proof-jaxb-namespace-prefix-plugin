@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2011 rel. 2 (x64) (http://www.altova.com) by Matze (TheBakery GmbH)--><xs:schema targetNamespace="http://types.theberlinbakery.com/v1_2" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_2" xmlns:ns1="http://types.theberlinbakery.com/v1_0">
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Partner-v1.0.xsd"/>
+  <xs:include schemaLocation="Order-v1.1.xsd"/>
+  <xs:complexType name="storeOrder">
+    <xs:annotation>
+      <xs:documentation>Service to store an order</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ns1:ShopPartner">
+        <xs:sequence>
+          <xs:element name="Order" type="Order"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="storeOrder" type="storeOrder">
+    <xs:annotation>
+      <xs:documentation>Service to store an order</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (x64) (http://www.altova.com) by Matthias Frohwann (TheBakery GmbH) -->
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_1" xmlns:v1="http://types.theberlinbakery.com/v1_0" targetNamespace="http://types.theberlinbakery.com/v1_1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Faults-v1.0.xsd"/>
+	<xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Property-v1.0.xsd"/>
+	<xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Element-v1.0.xsd"/>
+	<xs:complexType name="Acknowledgement">
+		<xs:annotation>
+			<xs:documentation>Positive Empfangsbestaetigung</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Result" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Der Empfaenger einer Nachricht kann eine ID zurueckschicken, z.B. seine interne Referenz auf ein auf Basis der empfangenen Nachricht gespeichertes Objekt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Element" type="v1:Element" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Generische Elemente</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Properties" type="v1:PropertyGroup" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Schluessel-Wert-Paare</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Acknowledgement" type="Acknowledgement">
+		<xs:annotation>
+			<xs:documentation>Positive Empfangsbestaetigung</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AcknowledgementEnvelope">
+		<xs:annotation>
+			<xs:documentation>Allgemeine Empfangsbestaetigung</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="Acknowledgement"/>
+			<xs:element name="DuplicateException" type="v1:DuplicateException"/>
+			<xs:element name="InvalidMessageException" type="v1:InvalidMessageException"/>
+			<xs:element name="TechnicalException" type="v1:TechnicalException"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="AcknowledgementEnvelope" type="AcknowledgementEnvelope">
+		<xs:annotation>
+			<xs:documentation>Allgemeine Empfangsbestaetigung</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

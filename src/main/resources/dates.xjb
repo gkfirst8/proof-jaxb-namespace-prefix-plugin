@@ -1,0 +1,18 @@
+<bindings xmlns="https://jakarta.ee/xml/ns/jaxb" version="3.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	extensionBindingPrefixes="xjc"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+	<globalBindings>
+		<xjc:javaType
+			name="java.time.LocalDate" xmlType="xs:date"
+			adapter="io.github.threetenjaxb.core.LocalDateXmlAdapter"/>
+		<xjc:javaType
+			name="java.time.LocalTime" xmlType="xs:time"
+			adapter="io.github.threetenjaxb.core.LocalTimeXmlAdapter"/>
+		<xjc:javaType
+			name="java.time.LocalDateTime" xmlType="xs:dateTime"
+			adapter="io.github.threetenjaxb.core.LocalDateTimeXmlAdapter"/>
+		<xjc:javaType
+			name="java.math.BigDecimal" xmlType="xs:decimal"
+			adapter="com.intershop.adapters.BigDecimalAdapter"/>
+	</globalBindings>
+</bindings>

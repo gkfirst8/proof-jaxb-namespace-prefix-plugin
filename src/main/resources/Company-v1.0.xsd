@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<xs:schema xmlns="http://types.theberlinbakery.com/v1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Company">
+		<xs:annotation>
+			<xs:documentation>Unternehmen</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Firmenname</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="department" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Abteilung</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lineOfBusiness">
+			<xs:annotation>
+				<xs:documentation>Branche</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="costNo" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Kostenstelle</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="commercialRegisterId" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Handelsregisternummer</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="commercialRegisterLocation" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Sitz des Handelsregisters</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Gesellschaftsform, z.B. "AG" oder "GmbH"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vatNo" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Umsatzsteuernummer</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Company" type="Company">
+		<xs:annotation>
+			<xs:documentation>Unternehmen</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

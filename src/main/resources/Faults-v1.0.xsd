@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<xs:schema xmlns="http://types.theberlinbakery.com/v1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="ValidationMessage">
+		<xs:annotation>
+			<xs:documentation>Information ueber eine fehlgeschlagene Validierung</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="errorPath" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fehlerhafte Stelle in der Nachircht</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="errorType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Fehlertyp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InvalidMessageException">
+		<xs:annotation>
+			<xs:documentation>Fachlich nicht verarbeitbare Nachricht. Muss vom Sender korrigiert und erneut versandt werden</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="message" type="xs:string" minOccurs="0"/>
+			<xs:element name="ValidationMessages" type="ValidationMessage" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Information ueber eine fehlgeschlagene Validierung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TechnicalException">
+		<xs:annotation>
+			<xs:documentation>Beim Empfaenger liegt ein technischer Fehler vor. Der Sender soll die Nachricht unteraendert erneut versenden</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="message" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DuplicateException">
+		<xs:annotation>
+			<xs:documentation>Dem Empfaenger liegt eine Nachricht mit gleicher Nachrichten-ID bereits vor. Der Sender kann eine erneute Uebermittlung einstellen. Gilt auch als positive (!) Empfangsbestaetigung</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="message" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="InvalidMessageException" type="InvalidMessageException">
+		<xs:annotation>
+			<xs:documentation>Fachlich nicht verarbeitbare Nachricht. Muss vom Sender korrigiert und erneut versandt werden</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TechnicalException" type="TechnicalException">
+		<xs:annotation>
+			<xs:documentation>Beim Empfaenger liegt ein technischer Fehler vor. Der Sender soll die Nachricht unteraendert erneut versenden</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DuplicateException" type="DuplicateException">
+		<xs:annotation>
+			<xs:documentation>Dem Empfaenger liegt eine Nachricht mit gleicher Nachrichten-ID bereits vor. Der Sender kann eine erneute Uebermittlung einstellen. Gilt auch als positive (!) Empfangsbestaetigung</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

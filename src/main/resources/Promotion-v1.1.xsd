@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2011 rel. 2 (x64) (http://www.altova.com) by Matze (TheBakery GmbH)--><xs:schema targetNamespace="http://types.theberlinbakery.com/v1_2" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_2">
+  <xs:complexType name="Promotion">
+    <xs:annotation>
+      <xs:documentation>Promotion</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Database UUID of the promotion. Used for BI statistics.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="descriptorId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The type id of the promotion. For Example ItemValueOffDiscount</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="netValue" type="xs:decimal" use="required">
+      <xs:annotation>
+        <xs:documentation>Total net value which was reduced by this promotion</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="grossValue" type="xs:decimal" use="required">
+      <xs:annotation>
+        <xs:documentation>Total gross value which was reduced by this promotion</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="percentageValue" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation>The configured percentage discount</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="fixedValue" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation>The configured fixed discount</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="code" type="xs:string" use="optional"/>
+    <xs:attribute name="budgetSourceID" type="xs:string" use="optional"/>
+  </xs:complexType>
+</xs:schema>

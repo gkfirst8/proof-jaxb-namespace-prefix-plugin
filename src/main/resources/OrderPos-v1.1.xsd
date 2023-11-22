@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://types.theberlinbakery.com/v1_2" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_2" xmlns:ns1="http://types.theberlinbakery.com/v1_0">
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Property-v1.0.xsd"/>
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Article-v1.0.xsd"/>
+  <xs:include schemaLocation="Price-v1.1.xsd"/>
+  <xs:complexType name="OrderPos">
+    <xs:annotation>
+      <xs:documentation>An order position always related to one article (line-item) including a quantity of items</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Article" type="ns1:Article">
+        <xs:annotation>
+          <xs:documentation>Article references</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SelectedSupplier" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Supplier selected to deliver the article</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Shipping" type="OrderPosShipping">
+        <xs:annotation>
+          <xs:documentation>Shipping informations for this line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Ordered">
+        <xs:annotation>
+          <xs:documentation>Ordered</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="quantity" type="xs:integer" use="required">
+            <xs:annotation>
+              <xs:documentation>Quantity</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="deliveryDays" type="xs:integer" use="required">
+            <xs:annotation>
+              <xs:documentation>Expected availability of article in days</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="unit" type="xs:string" use="optional">
+            <xs:annotation>
+              <xs:documentation>Unit of the product. The value is only used for invoice printing. For example: meter, liter, piece</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="Standard" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Delivery always according to standard of the carrier</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="FixedDeliveryDate" type="xs:dateTime">
+          <xs:annotation>
+            <xs:documentation>Expected date of delivery</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="EarliestDeliveryDate" type="xs:dateTime">
+          <xs:annotation>
+            <xs:documentation>Earliest date of delivery</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ExpressDeliveryTime" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>In case of express delivery set code of type of express delivery</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="DeliveryOption" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Extra delivery conditions for supplier</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+              <xs:documentation>Code of delivery option</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:choice>
+        <xs:sequence>
+          <xs:element name="SalesSum" type="PosPrice">
+            <xs:annotation>
+              <xs:documentation>Position sales price of customer</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PurchaseItem" type="PurchaseItemPrice" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Item purchase price of supplier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Unit" type="UnitPrice">
+            <xs:annotation>
+              <xs:documentation>Single Prices of this article</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:element name="NoPayment" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>No payment information will be submitted</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="Properties" type="ns1:PropertyGroup" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Additional information can be added by customization</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="number" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Order position of article (line-item)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="costCenter" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>name / identifier of the related cost center. Note: this attribute overlaps the information from the order</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="project" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>name / identifier of the related project. Note: this attribute overlaps the information from the order</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="OrderPosPrices">
+    <xs:annotation>
+      <xs:documentation>Price of order position and single item</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Sum" type="PosPrice">
+        <xs:annotation>
+          <xs:documentation>Price of order position (quantity * price per item)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderPosShipping">
+    <xs:annotation>
+      <xs:documentation>Shipping informations for this line item</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="shipToAddress" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Id of the shipping address</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="shippingMethod" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Id of the shipping method</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="freightClass" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Freight class id of the product</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="OrderPos" type="OrderPos">
+    <xs:annotation>
+      <xs:documentation>An order position always related to one article (line-item) including a quantity of items</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="OrderPosPrices" type="OrderPosPrices">
+    <xs:annotation>
+      <xs:documentation>Price of order position and single item</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

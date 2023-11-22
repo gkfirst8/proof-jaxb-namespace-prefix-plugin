@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by Matthias Baerens 
+	(The Bakery GmbH) -->
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery 
+	GmbH) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_0"
+	targetNamespace="http://types.theberlinbakery.com/v1_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Partner">
+		<xs:annotation>
+			<xs:documentation>Kommunikationspartner</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MessageId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Eindeutige Nachrichten-ID. Bei mehereren
+						Sendeversuchen bleibt die Message-ID bis zur finalen geglueckten
+						Uebermittlung oder zum entgueltigen Verwerfen der Nachricht gleich
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="User" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Nutzer des Systems</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Password" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Password des Nutzers</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ShopPartner">
+		<xs:annotation>
+			<xs:documentation>Systemnutzer eines Shops</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Partner">
+				<xs:sequence>
+					<xs:element name="Shop" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Name des Shops, der die Schnittstelle aufruft
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SupplierPartner">
+		<xs:annotation>
+			<xs:documentation>Systemnutzer eines Distriibutors</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Partner">
+				<xs:sequence>
+					<xs:element name="Supplier" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Distributor, der die Schnittstelle aufruft
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ShopSupplier" type="xs:string"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Shop-spezifische Distributorenkennung
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ShopPartner" type="ShopPartner" />
+	<xs:element name="SupplierPartner" type="SupplierPartner" />
+</xs:schema>

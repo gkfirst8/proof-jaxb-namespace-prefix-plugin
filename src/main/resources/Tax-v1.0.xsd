@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://types.theberlinbakery.com/v1_0" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Tax">
+		<xs:annotation>
+			<xs:documentation>Umsatzsteuer</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="type" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Umsatzsteuertyp (z.B. "FULL", "REDUCED")</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="amount" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation>Betrag der Umsatzsteuer des Typs</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Tax" type="tns:Tax"/>
+</xs:schema>

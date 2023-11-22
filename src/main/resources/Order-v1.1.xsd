@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://types.theberlinbakery.com/v1_2" elementFormDefault="qualified" attributeFormDefault="unqualified" jxb:version="1.0" jxb:extensionBindingPrefixes="xjc" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_2" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:ns1="http://types.theberlinbakery.com/v1_0">
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Person-v1.0.xsd"/>
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Contact-v1.0.xsd"/>
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Company-v1.0.xsd"/>
+  <xs:import namespace="http://types.theberlinbakery.com/v1_0" schemaLocation="Property-v1.0.xsd"/>
+  <xs:include schemaLocation="OrderAddress-v1.1.xsd"/>
+  <xs:include schemaLocation="OrderPos-v1.1.xsd"/>
+  <xs:include schemaLocation="Price-v1.1.xsd"/>
+  <xs:complexType name="Order">
+    <xs:annotation>
+      <xs:documentation>An order consists of one or more order positions. Every position contains a different article (line-item) and the quantity of items of this position</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Customer">
+        <xs:annotation>
+          <xs:documentation>Customer</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:annotation>
+                <xs:documentation>A customer can be a private person or a company</xs:documentation>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:annotation>
+                  <xs:documentation>Company</xs:documentation>
+                </xs:annotation>
+                <xs:element name="Company" type="ns1:Company">
+                  <xs:annotation>
+                    <xs:documentation>Information about the company</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="ContactPerson" type="ns1:Person" minOccurs="0">
+                  <xs:annotation>
+                    <xs:documentation>Contact person of the company</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+              <xs:element name="Person" type="ns1:Person">
+                <xs:annotation>
+                  <xs:documentation>Private person</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:choice>
+            <xs:element name="Contact" type="ns1:Contact" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Customer contact</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="orderId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Order ID as used by the shop</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Shop">
+        <xs:annotation>
+          <xs:documentation>Shop</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="orderCreationDate" type="xs:dateTime" use="required">
+            <xs:annotation>
+              <xs:documentation>Date of order creation</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="customerId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Customer ID as used by the shop</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="companyId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Company ID as used by the shop. (B2B customer)</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="orderId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Order ID as used by the shop</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="invoiceId" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Invoice ID</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="InvoiceAddressID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>ID of the invoice address. This references to Order/Address@id</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="Address" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Generic addresses: Optional; in consultation further addresses can be specified</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Sales">
+        <xs:annotation>
+          <xs:documentation>Submit sales prices. In case of cash on delivery set ./Total/Gross/@amount which is the price the carrier should receive</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="Sales">
+              <xs:attribute name="method" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>Type of payment of the order</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+              <xs:attribute name="currency" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>Currency the supplier will be payed in</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Optimization" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Preferred optimization. If the order can be handled in different ways a preference between best-price or processing-time can be set</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SplitShipmentAllowed" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Set true to deliver immediately available articles even if other articles of the order currently are not available</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Position" type="OrderPos" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>For each article (line-item) there is only one order position. Use ./ordered/@quantity to set the quantity of items per article (line-item)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Payment" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Payment provider relevant data</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="paymentProviderOrderNo" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Order number at payment provider</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="paymentProviderRefNo" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>reference number at payment provider</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="paymentProviderMerchantAccount" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant account (name / identifier) at payment provider</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Properties" type="ns1:PropertyGroup" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Additional information can be added by customization</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="reservationId" type="xs:long" use="optional">
+      <xs:annotation>
+        <xs:documentation>ID of the stock reservation - provided by the IOM stock reservation service</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="costCenter" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>name / identifier of the related cost center</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="project" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>name / identifier of the related project</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Sales">
+    <xs:annotation>
+      <xs:documentation>Sales prices</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Sum" type="SumPrice">
+        <xs:annotation>
+          <xs:documentation>Sum of prices of order positions</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Charge" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Fees including delivery</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="PosPrice">
+              <xs:attribute name="type" type="xs:string" use="required">
+                <xs:annotation>
+                  <xs:documentation>Type of fee</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Total" type="TotalPrice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Order" type="Order">
+    <xs:annotation>
+      <xs:documentation>An order consists of one or more order positions. Every position contains a different article (line-item) and the quantity of items of this position</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="Sales" type="Sales">
+    <xs:annotation>
+      <xs:documentation>Sales prices</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Matthias Baerens (The Bakery GmbH) -->
+<!-- Mit XMLSpy v2009 (http://www.altova.com) von Matthias Baerens (The Bakery GmbH) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://types.theberlinbakery.com/v1_0" targetNamespace="http://types.theberlinbakery.com/v1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Person">
+		<xs:annotation>
+			<xs:documentation>Eine natuerliche Person</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="salutation" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Anrede, z.B. "Frau"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="title" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Zum Namen gehoerender Zusatz, z.B. "Dr. rer nat"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="firstName" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Vorname, z.B. "Erika"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lastName" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Nachname, z.B. "Mustermann"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="LegalPerson">
+		<xs:annotation>
+			<xs:documentation>Eine jursitische Person</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:annotation>
+				<xs:documentation>Eine juristische Person ist ein Unternehmen oder eine natuerliche Person</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:annotation>
+					<xs:documentation>Ein Unternehmen</xs:documentation>
+				</xs:annotation>
+				<xs:element name="CompanyName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Name des Unternehmens</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ContactPerson" type="Person" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Eine Kontaktperson im Unternehmen</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:element name="Person" type="Person">
+				<xs:annotation>
+					<xs:documentation>Eine Privatperson</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="Person" type="Person">
+		<xs:annotation>
+			<xs:documentation>Eine natuerliche Person</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LegalPerson" type="LegalPerson">
+		<xs:annotation>
+			<xs:documentation>Eine jursitische Person</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>
