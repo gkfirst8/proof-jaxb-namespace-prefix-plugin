@@ -11,5 +11,6 @@ After studying the source-code of the plugin a bit I found that the binding can 
 # Links
 
 See also:
+* https://github.com/highsource/jaxb-tools
 * https://github.com/highsource/jaxb-tools/wiki/JAXB-Tools-Migration-Guide
 * https://github.com/highsource/jaxb-tools/wiki/JAXB2-Namespace-Prefix-Plugin
