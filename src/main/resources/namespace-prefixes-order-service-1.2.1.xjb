@@ -5,132 +5,84 @@
     <bindings schemaLocation="OrderService-v1.1.xsd">
         <bindings>
             <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
-            <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <!-- Partner -->
     <bindings schemaLocation="Partner-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <!-- Order -->
     <bindings schemaLocation="Order-v1.1.xsd">
         <bindings>
             <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
-            <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="OrderAddress-v1.1.xsd">
         <bindings>
             <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
-            <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Person-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Tax-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Contact-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Company-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Property-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="OrderPos-v1.1.xsd">
         <bindings>
             <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
-            <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Article-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Price-v1.1.xsd">
         <bindings>
             <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
-            <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Promotion-v1.1.xsd">
         <bindings>
             <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
-            <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <!-- Other -->
     <bindings schemaLocation="Faults-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Acknowledgement-v1.1.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
-            <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
             <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
     <bindings schemaLocation="Element-v1.0.xsd">
         <bindings>
-            <namespace:prefix name="" namespaceURI="http://types.theberlinbakery.com/v1_2" />
-            <namespace:prefix name="soapenv" namespaceURI="http://schemas.xmlsoap.org/soap/envelope/" />
             <namespace:prefix name="v1p0" namespaceURI="http://types.theberlinbakery.com/v1_0" />
-            <namespace:prefix name="v1p1" namespaceURI="http://types.theberlinbakery.com/v1_1" />
         </bindings>
     </bindings>
 </bindings>
